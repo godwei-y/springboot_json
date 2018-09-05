@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<c:set var="ctx" value="<%=request.getContextPath()%>" xmlns:c="http://www.springframework.org/schema/beans"/>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset=utf-8>
+    <title>Spring Boot Hello World</title>
+</head>
+
+<body>
+<h1>welcome</h1>
+<!--<form action="/login/getToken" method="post" onsubmit="true">-->
+    <!--账号： <input type="text" name="username" id="username" value="">-->
+    <!--密码：<input type="password" name="pwd" id="pwd" value="">-->
+    <!--<input type="submit"value="提交" >-->
+<!--</form>-->
+
+<form action="/test/finStudentByName" method="get" onsubmit="true">
+    根据姓名查询个人信息： <input type="text" name="name" id="name"  th:value="${finStudentByNameErrMsg}">
+    <input type="submit"value="提交" >
+</form>
+<br>
+<form action="/test/finStudentById" method="get" onsubmit="true">
+    <!--Token： <input type="text" name="token" id="token" th:value="${Tokens}">-->
+    根据id查询个人信息： <input type="text" name="id" id="id" th:value="${finStudentByIdErrMsg}">
+    <input type="submit"value="提交" >
+</form>
+<br>
+<form action="/test/finStudentAll" method="get" onsubmit="true">
+    <!--<%String Tokens=(String)request.getAttribute("Tokens");%>-->
+    <!--<%=Tokens%>-->
+<input type="submit"value="查询所有记录" >
+</form>
+<br>
+<form action="/test/deleteById" method="get" onsubmit="true">
+    根据id删除个人信息： <input type="text" name="id" th:value="${deleteByIdErrMsg}">
+    <input type="submit"value="提交" >
+</form>
+<br>
+<form action="/test/update" method="get" onsubmit="true">
+    修改个人信息：id<input type="text" name="id"  th:value="${updateErrMsg}">
+    name <input type="text" name="name"  value="">
+    age<input type="text" name="age" value="">
+    <input type="submit"value="提交" >
+</form>
+<br>
+<form action="/test/addStudent" method="get" onsubmit="true">
+    新增个人信息：id<input type="text" name="id" th:value="${addStudentErrMsg}">
+    name <input type="text" name="name"  value="">
+    age<input type="text" name="age" value="">
+    <input type="submit"value="提交" >
+</form>
+
+</body>
+
+</html>

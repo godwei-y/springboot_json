@@ -1,0 +1,50 @@
+spring注解
+1.@SpringBootApplication:申明让spring boot 自动给程序进行必要的配置，包含了@ConponentScan、@Configuration、@EnableAutoConfiguration（自动配置）注解
+  @ConponentScan让spring Boot扫描到Configuration类并把它加入到程序上下文。
+  @Configuration等同于spring的xml配置文件，使用java可以检查类型安全。
+  这四个注解一般用于有main(）的主类头顶。
+2.@RestController:是@Controller和@ResponseBody的合集，表示这是个控制器bean，并将函数返回值直接填入HTTP响应体中，是REST风格的控制器。
+  @Controller用于定义控制器类，在spring项目中由控制器负责将用户发来的请求转发到对应的服务接口（service层），一般用于控制器类头，通常方法需要配合注解@RequestMapping
+  @ResponseBody使方法将返回结果直接写入HTTP response body中（比如异步获取json数据），而不会被解析为跳转路径。一般也会配合@RequestMapping一起使用。
+3.  @Value :注入application.propertites配置文件的属性的值
+4.  @Autowired   //自动导入依赖的bean,一般用于声明自己构造的bean类的对象的头部 ：private Person p;
+
+  @Controller //@RestController
+  @RequestMapping("/test")
+  public class Test(){
+
+  @RequestMapping("/test1")
+  @ResponseBody
+  public String test1(){
+  return "test1,ok!";将test1,ok!以json格式直接返回到HTTP
+  }
+
+   @RequestMapping("/test2")
+    public String test2(){
+    System.out.println("test2...........");
+    }
+    return "/hello";将返回结果解析为跳转路径。
+    }
+
+      @RequestMapping("/test3/{name}")
+        public String test3(@PathVariable String name){
+        System.out.println("test3...........:"+name);
+        }
+        return "/hello";将返回结果解析为跳转路径。
+        }
+  }
+
+package com.codisan.sbdemo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
+
+@SpringBootApplication
+@ServletComponentScan
+public class DemoSpringbootApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DemoSpringbootApplication.class, args);
+	}
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.Dao.Mapper.StudentMapper">
+  <!-- 解决类的属性名和数据库列名不一致问题：property表示属性名，column表示列名-->
+  <resultMap id="BaseResultMap" type="test.Dao.Po.Student">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+  </resultMap>
+  <!-- 插入一个对象，返回id-->
+  <insert id="insert" parameterType="test.Dao.Po.Student">
+    insert into student (id, name, age)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER})
+  </insert>
+  <!-- 插入一个对象，返回主键，且将主键的值注入属性名id中-->
+  <insert id="addStudent" parameterType="test.Dao.Po.Student" useGeneratedKeys="true" keyProperty="id">
+    insert into student (id, name, age)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER})
+  </insert>
+
+  <select id="selectStudentById" parameterType="String" resultType="Student">
+   select * from student where id=#{id}
+  </select>
+
+  <select id="selectStudentByName" parameterType="String" resultType="Student">
+    select * from student where student.name=#{name}
+  </select>
+
+
+  <select id="selectAllStudent" resultType="test.Dao.Po.Student">
+    select * from student
+  </select>
+
+  <update id="updateStudent" parameterType="Student">
+    update student set name=#{name},age=#{age} where id=#{id}
+  </update>
+
+  <delete id="deleteStudentById" parameterType="String">
+    delete from student where id=#{id}
+  </delete>
+
+  <insert id="insertSelective" parameterType="test.Dao.Po.Student">
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

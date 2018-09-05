@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.Dao.Mapper.UserMapper">
+    <!-- 解决类的属性名和数据库列名不一致问题：property表示属性名，column表示列名-->
+    <resultMap id="BaseResultMap" type="test.Dao.Po.User">
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="pwd" jdbcType="VARCHAR" property="pwd" />
+    </resultMap>
+    <select id="selectUserByPwd" parameterType="String" resultType="User">
+        select * from user where user.pwd=#{pwd}
+    </select>
+</mapper>

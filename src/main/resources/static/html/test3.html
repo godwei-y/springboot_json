@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="CONTENT-TYPE"content="text/html;charset=UTF-8"/>
+    <title>Spring Boot Hello World</title>
+</head>
+
+<body>
+<table  th:border="1" data-th-bgcolor="yellow" align="center"width="200"height="100" cellpacing="200"data-th-marginheight="300">
+    <tr >
+        <td>id</td>
+        <td>name</td>
+        <td>age</td>
+
+    </tr>
+<tr th:each="student : ${students}">
+    <td th:text="${student.id}">id</td>
+    <td th:text="${student.name}">name</td>
+    <td th:text="${student.age}">age</td>
+</tr>
+</table>
+<!--<p th:text="'Hello,'+${name}+'!'"></p>
+<input  th:type="text"th:id="name"th:name="name" th:value="${name}"><br>-->
+<form action="/index.html" method="get" onsubmit="true" style="text-align: center">
+    <input type="submit"value="安全退出" />
+</form>
+
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="CONTENT-TYPE"content="text/html;charset=UTF-8"/>
+    <title>Spring Boot Hello World</title>
+</head>
+
+<body>
+    <h5 style="text-align: center">insertResult</h5>
+    <p th:text="'插入成功后的返回值是：'+${message}+'!'"  style="text-align: center"></p>
+    <form action="/index.html" method="get" onsubmit="true" style="text-align: center">
+        <input type="submit"value="回到首页" />
+    </form>
+</body>
+
+</html>
