@@ -32,7 +32,7 @@ public class test_zhujie {
     @RequestMapping("/test2")
     public String test2() {
         System.out.println("test2...........");
-
+//
         return "html/test2";//将返回结果解析为跳转路径。
     }
 
